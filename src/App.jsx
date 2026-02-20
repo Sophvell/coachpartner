@@ -238,6 +238,13 @@ export default function CoachPartner() {
     return res.json();
   };
 
+const handleFileInputClick = (e) => {
+  if (analysesUsed >= 1) {
+    e.preventDefault(); // Empêche l'ouverture du sélecteur
+    setShowPaywall(true);
+  }
+};  
+
 const handleAudioUpload = async (e) => {
   const file = e.target.files[0];
   if (!file) return;
@@ -1063,8 +1070,10 @@ RETOURNE UN JSON STRICTEMENT DANS CE FORMAT (sans backticks markdown) :
                   ref={fileInputRef}
                   type="file"
                   accept="audio/*"
+                  onClick={handleFileInputClick}
                   onChange={handleAudioUpload}
-                  disabled={analysesUsed >= 1}
+                  style={{ display: "none" }}
+                  id="audio-upload"
                 />
                 <div className="cp-drop-icon">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8A85C" strokeWidth="1.8">
