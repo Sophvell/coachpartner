@@ -1070,7 +1070,6 @@ RETOURNE UN JSON STRICTEMENT DANS CE FORMAT (sans backticks markdown) :
                   ref={fileInputRef}
                   type="file"
                   accept="audio/*"
-                  onClick={handleFileInputClick}
                   onChange={handleAudioUpload}
                   style={{ display: "none" }}
                   id="audio-upload"
@@ -1089,8 +1088,14 @@ RETOURNE UN JSON STRICTEMENT DANS CE FORMAT (sans backticks markdown) :
                   <button
                     className="cp-btn cp-btn-amber"
                     style={{ marginTop: "1.5rem" }}
-                    disabled={analysesUsed >= 1}
-                    onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }}
+                    onClick={(e) => { e.stopPropagation(); 
+                    if (analysesUsed >= 1) {
+                      setShowPaywall(true);
+                    } else {
+                      fileInputRef.current?.click();
+                    }
+                  }} 
+        
                   >
                     Parcourir les fichiers
                   </button>
