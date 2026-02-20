@@ -1040,14 +1040,18 @@ RETOURNE UN JSON STRICTEMENT DANS CE FORMAT (sans backticks markdown) :
             <div style={{ display: "flex", justifyContent: "flex-end", gap: "0.75rem" }}>
               <button
                 className="cp-btn cp-btn-primary"
-                onClick={() => analyzeTranscription()}
-                disabled={!transcription.trim() || analysesUsed >= 1}
-              >
-                {analysesUsed >= 1 ? "Analyse utilisée" : "Analyser la séance →"}
-              </button>
+                onClick={() => {
+                if (analysesUsed >= 1) {
+                  setShowPaywall(true);
+                } else {
+                  analyzeTranscription();
+                }
+              }}
+            >
+              Analyser cette transcription
+            </button>
             </div>
           </div>
-        )}
 
         {/* ═══════════════════════════════════════════
             PHASE : AUDIO INPUT
