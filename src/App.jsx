@@ -945,7 +945,7 @@ RETOURNE UN JSON STRICTEMENT DANS CE FORMAT (sans backticks markdown) :
               {codeError && <div className="cp-code-error">{codeError}</div>}
 
               <p className="cp-contact">
-                Questions ? <a href="mailto:hello@coachpartner.app">hello@coachpartner.app</a>
+                Questions ? <a href="mailto:contact@coachpartner.app">hello@coachpartner.app</a>
               </p>
 
               <button
