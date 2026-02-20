@@ -238,10 +238,17 @@ export default function CoachPartner() {
     return res.json();
   };
 
-  const handleAudioUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    if (analysesUsed >= 1) { setShowPaywall(true); return; }
+ const handleAudioUpload = async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  
+  // Vérifier limite AVANT tout traitement
+  if (analysesUsed >= 1) {
+    setShowPaywall(true);
+    e.target.value = ""; // Reset input
+    return;
+  }
+  // ... reste du code
     setError(null);
     const validationError = await validateAudioFile(file);
     if (validationError) { setError(validationError); e.target.value = ""; return; }
@@ -266,14 +273,19 @@ export default function CoachPartner() {
     }
   };
 
-  const analyzeTranscription = async (text = transcription) => {
-    if (!text.trim()) { setError("Transcription vide"); return; }
-    if (analysesUsed >= 1) { setShowPaywall(true); return; }
+const analyzeTranscription = async (text = transcription) => {
+  if (!text.trim()) { setError("Transcription vide"); return; }
+  
+  // Vérifier limite
+  if (analysesUsed >= 1) {
+    setShowPaywall(true);
+    return;
+  }
     setPhase("analyzing");
     setError(null);
     setProgress({ message: "Analyse ICF en cours…", percent: 70 });
     try {
-      const systemPrompt = `Tu es un mentor ICF certifié PCC, spécialisé dans l'évaluation de séances de coaching selon le référentiel ICF (8 compétences clés).
+      const systemPrompt = `Tu es un mentor ICF certifié MCC, spécialisé dans l'évaluation de séances de coaching selon le référentiel ICF (8 compétences clés).
 Ton rôle : Analyser objectivement une transcription de séance de coaching.
 Principes d'évaluation :
 - Base ton analyse UNIQUEMENT sur des éléments observables dans la transcription
