@@ -248,7 +248,6 @@ export default function CoachPartner() {
     e.target.value = ""; // Reset input
     return;
   }
-  // ... reste du code
     setError(null);
     const validationError = await validateAudioFile(file);
     if (validationError) { setError(validationError); e.target.value = ""; return; }
