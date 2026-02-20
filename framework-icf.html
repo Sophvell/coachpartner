@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Framework ICF – Les 8 Compétences Clés du Coaching | CoachPartner</title>
+  <meta name="description" content="Découvrez le référentiel ICF : définition du coaching professionnel et les 8 compétences fondamentales évaluées par CoachPartner.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400;1,600&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400;1,600&family=Figtree:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --night:   #141820;
+      --deep:    #1C2230;
+      --surface: #232C3D;
+      --surface2:#2B3549;
+      --border:  rgba(255,255,255,0.07);
+      --border-w:rgba(255,255,255,0.12);
+      --teal:    #3ECFB2;
+      --teal-dk: #2DB89C;
+      --teal-pl: rgba(62,207,178,0.10);
+      --teal-bd: rgba(62,207,178,0.22);
+      --text:    #F0EDE8;
+      --text-2:  #A8B0C0;
+      --text-3:  #5C6475;
+    }
+
+    body {
+      background: var(--night);
+      font-family: 'Figtree', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* ── Ambient glow ── */
+    .ambient {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .orb {
+      position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.12;
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+    .orb-1 { width:600px;height:600px; background:#5BBFAD; top:-250px;left:-180px; }
+    .orb-2 { width:500px;height:500px; background:#E8A85C; bottom:-200px;right:-150px; animation-delay:-6s; }
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(25px,18px) scale(1.06); }
+    }
+
+    .page {
+      position: relative; z-index: 1;
+      max-width: 1000px; margin: 0 auto;
+      padding: 2.5rem 2rem 5rem;
+    }
+
+    /* ── Nav ── */
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 2rem; margin-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: 1.5rem; font-weight: 300; color: var(--text);
+      letter-spacing: -0.01em; text-decoration: none;
+    }
+    .logo strong {
+      font-style: normal; font-weight: 600; color: var(--teal);
+    }
+    .back-link {
+      font-size: 0.875rem; color: var(--text-2); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--teal); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 0 0 4rem;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--teal-pl); border: 1px solid var(--teal-bd);
+      padding: 0.4rem 1rem; border-radius: 999px;
+      font-size: 0.7rem; color: var(--teal); font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.75rem;
+    }
+    .tag-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal); animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero h1 {
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 300; line-height: 1.1; color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--teal); font-weight: 400;
+    }
+    .hero-desc {
+      font-size: 1rem; font-weight: 300; color: var(--text-2);
+      max-width: 600px; line-height: 1.8; margin-bottom: 2.5rem;
+    }
+
+    /* ── Definition box ── */
+    .definition {
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--teal); border-radius: 12px;
+      padding: 2rem; margin: 3rem 0; position: relative;
+    }
+    .definition::before {
+      content: 'Définition officielle ICF';
+      position: absolute; top: -10px; left: 2rem;
+      background: var(--night); padding: 0 0.75rem;
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--teal); font-weight: 500;
+    }
+    .definition p {
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: 1.1rem; font-weight: 200; color: var(--text);
+      line-height: 1.8;
+    }
+
+    /* ── Section ── */
+    section { padding: 3rem 0; }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: 1.4rem; font-weight: 300; color: var(--text);
+      white-space: nowrap;
+    }
+    .section-line {
+      flex: 1; height: 1px; background: var(--border);
+    }
+
+    h2 {
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 300; line-height: 1.2; color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    h2 em { font-style: italic; color: var(--teal); }
+
+    p {
+      color: var(--text-2); margin-bottom: 1rem; line-height: 1.8;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Pillar divider ── */
+    .pillar-divider {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 3rem 0 2rem; padding: 1rem 0;
+    }
+    .pillar-label {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--teal); white-space: nowrap;
+    }
+    .pillar-line {
+      flex: 1; height: 1px; background: var(--teal-bd);
+    }
+
+    /* ── Competence card ── */
+    .comp-item {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; margin-bottom: 1rem;
+      transition: all 0.3s ease;
+    }
+    .comp-item.open {
+      border-color: var(--teal-bd);
+    }
+    .comp-header {
+      display: flex; align-items: center; gap: 1.5rem;
+      padding: 1.5rem; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .comp-header:hover {
+      background: var(--surface2);
+    }
+    .comp-num {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem; font-weight: 300; color: var(--teal);
+      width: 50px; text-align: center; flex-shrink: 0;
+    }
+    .comp-meta { flex: 1; }
+    .comp-pillar {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-3); margin-bottom: 0.25rem;
+    }
+    .comp-title {
+      font-size: 1rem; font-weight: 500; color: var(--text);
+    }
+    .comp-toggle {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--teal-pl); border: 1px solid var(--teal-bd);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--teal); font-size: 1.25rem; font-weight: 300;
+      transition: all 0.3s; flex-shrink: 0;
+    }
+    .comp-item.open .comp-toggle {
+      transform: rotate(45deg); background: var(--teal); color: var(--night);
+    }
+    .comp-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .comp-item.open .comp-body {
+      max-height: 800px;
+    }
+    .comp-body-inner {
+      padding: 0 1.5rem 1.5rem 1.5rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+    .comp-body p {
+      font-size: 0.95rem; line-height: 1.7;
+    }
+    .comp-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;
+    }
+    .comp-tag {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.05em;
+      color: var(--teal); background: var(--teal-pl);
+      border: 1px solid var(--teal-bd); border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 3rem 2.5rem; margin: 4rem 0;
+      text-align: center;
+    }
+    .cta h2 {
+      margin-bottom: 1rem;
+    }
+    .cta p {
+      max-width: 540px; margin: 0 auto 2rem;
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--teal); color: var(--night);
+      padding: 0.875rem 2rem; border-radius: 10px;
+      font-size: 0.875rem; font-weight: 600;
+      text-decoration: none; transition: all 0.2s;
+      border: none; cursor: pointer;
+    }
+    .btn:hover {
+      background: var(--teal-dk); transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(62,207,178,0.3);
+    }
+
+    /* ── Reveal animation ── */
+    .reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .comp-header { flex-wrap: wrap; gap: 1rem; }
+      .comp-num { width: 40px; font-size: 1.25rem; }
+      .comp-title { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Ambient background -->
+<div class="ambient">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+</div>
+
+<div class="page">
+  
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="/" class="logo">Coach<strong>Partner</strong></a>
+    <a href="/" class="back-link">← Retour à l'accueil</a>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-tag">
+      <span class="tag-dot"></span>
+      Référentiel ICF
+    </div>
+    <h1>Le Framework <em>ICF</em></h1>
+    <p class="hero-desc">
+      Découvrez le référentiel de l'International Coaching Federation : 
+      définition du coaching professionnel et les 8 compétences clés 
+      évaluées par CoachPartner.
+    </p>
+  </div>
+
+  <!-- Definition -->
+  <div class="definition reveal">
+    <p>
+      « Le coaching professionnel se définit comme un partenariat 
+      avec des clients dans un processus créatif qui suscite la réflexion 
+      et accompagne la maximisation du potentiel personnel et professionnel. »
+    </p>
+  </div>
+
+  <!-- Introduction -->
+  <section>
+    <h2>Un référentiel <em>universel</em></h2>
+    <p>
+      L'ICF a établi un cadre de 8 compétences fondamentales qui définissent 
+      l'excellence en coaching. Ces compétences sont regroupées en 4 domaines :
+    </p>
+    <p style="margin-top: 1.5rem;">
+      <strong style="color: var(--teal);">Domaine A</strong> : Établir les fondements<br>
+      <strong style="color: var(--teal);">Domaine B</strong> : Co-créer la relation<br>
+      <strong style="color: var(--teal);">Domaine C</strong> : Communiquer efficacement<br>
+      <strong style="color: var(--teal);">Domaine D</strong> : Cultiver l'apprentissage
+    </p>
+  </section>
+
+  <!-- Competences -->
+  <section>
+    <div class="section-header">
+      <span class="section-title">Les 8 compétences clés</span>
+      <div class="section-line"></div>
+    </div>
+
+    <!-- DOMAINE A -->
+    <div class="pillar-divider reveal">
+      <span class="pillar-label">Domaine A — Établir les fondements</span>
+      <div class="pillar-line"></div>
+    </div>
+
+    <div class="comp-item reveal">
+      <div class="comp-header" onclick="toggleComp(this)">
+        <div class="comp-num">01</div>
+        <div class="comp-meta">
+          <div class="comp-pillar">Domaine A · Fondements</div>
+          <div class="comp-title">Fait preuve d'éthique dans sa pratique</div>
+        </div>
+        <div class="comp-toggle">+</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-body-inner">
+          <p>Le coach comprend et applique systématiquement l'éthique et les standards du coaching ICF. Il maintient la confidentialité, distingue coaching et autres disciplines, et identifie quand orienter vers d'autres professionnels.</p>
+          <p>En pratique : cadre de coaching clair dès la première séance, respect des limites professionnelles, pas de confusion avec thérapie ou conseil.</p>
+          <div class="comp-tags">
+            <span class="comp-tag">Confidentialité</span>
+            <span class="comp-tag">Conflits d'intérêts</span>
+            <span class="comp-tag">Limites professionnelles</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-item reveal">
+      <div class="comp-header" onclick="toggleComp(this)">
+        <div class="comp-num">02</div>
+        <div class="comp-meta">
+          <div class="comp-pillar">Domaine A · Fondements</div>
+          <div class="comp-title">Incarne un état d'esprit Coaching</div>
+        </div>
+        <div class="comp-toggle">+</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-body-inner">
+          <p>Le coach développe et maintient un état d'esprit ouvert, curieux, flexible et centré sur le client. Il reconnaît ses propres biais, pratique la supervision et le développement personnel continu.</p>
+          <p>Cette compétence est le fil rouge : le coach travaille autant sur lui-même que sur sa technique.</p>
+          <div class="comp-tags">
+            <span class="comp-tag">Supervision</span>
+            <span class="comp-tag">Développement personnel</span>
+            <span class="comp-tag">Conscience de soi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOMAINE B -->
+    <div class="pillar-divider reveal">
+      <span class="pillar-label">Domaine B — Co-créer la relation</span>
+      <div class="pillar-line"></div>
+    </div>
+
+    <div class="comp-item reveal">
+      <div class="comp-header" onclick="toggleComp(this)">
+        <div class="comp-num">03</div>
+        <div class="comp-meta">
+          <div class="comp-pillar">Domaine B · Co-création</div>
+          <div class="comp-title">Définit et maintient les contrats</div>
+        </div>
+        <div class="comp-toggle">+</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-body-inner">
+          <p>Le coach s'associe au client pour créer des accords clairs sur la relation, le processus et les objectifs. Il établit un contrat pour chaque séance et l'ensemble de l'accompagnement.</p>
+          <p>En pratique : définition du résultat attendu en début de séance, ajustement permanent si la direction change.</p>
+          <div class="comp-tags">
+            <span class="comp-tag">Contrat de séance</span>
+            <span class="comp-tag">Objectifs</span>
+            <span class="comp-tag">Triangulation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-item reveal">
+      <div class="comp-header" onclick="toggleComp(this)">
+        <div class="comp-num">04</div>
+        <div class="comp-meta">
+          <div class="comp-pillar">Domaine B · Co-création</div>
+          <div class="comp-title">Développe un espace de confiance et de sécurité</div>
+        </div>
+        <div class="comp-toggle">+</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-body-inner">
+          <p>Le coach crée un environnement sûr qui permet au client de s'exprimer librement. Il fait preuve de respect, d'empathie et soutient l'expression de tout ce que le client ressent.</p>
+          <p>Sans sécurité psychologique, pas d'exploration profonde. C'est le socle de toute transformation.</p>
+          <div class="comp-tags">
+            <span class="comp-tag">Alliance</span>
+            <span class="comp-tag">Sécurité psychologique</span>
+            <span class="comp-tag">Empathie</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-item reveal">
+      <div class="comp-header" onclick="toggleComp(this)">
+        <div class="comp-num">05</div>
+        <div class="comp-meta">
+          <div class="comp-pillar">Domaine B · Co-création</div>
+          <div class="comp-title">Reste en présence</div>
+        </div>
+        <div class="comp-toggle">+</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-body-inner">
+          <p>Le coach est pleinement présent avec le client, adoptant un style ouvert, flexible et confiant. Il reste ancré face à l'incertitude, gère ses émotions et s'adapte en temps réel.</p>
+          <p>La présence est l'outil principal du coach : être là, vraiment, avant toute technique.</p>
+          <div class="comp-tags">
+            <span class="comp-tag">Pleine présence</span>
+            <span class="comp-tag">Flexibilité</span>
+            <span class="comp-tag">Gestion émotionnelle</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOMAINE C -->
+    <div class="pillar-divider reveal">
+      <span class="pillar-label">Domaine C — Communiquer efficacement</span>
+      <div class="pillar-line"></div>
+    </div>
+
+    <div class="comp-item reveal">
+      <div class="comp-header" onclick="toggleComp(this)">
+        <div class="comp-num">06</div>
+        <div class="comp-meta">
+          <div class="comp-pillar">Domaine C · Communication</div>
+          <div class="comp-title">Écoute activement</div>
+        </div>
+        <div class="comp-toggle">+</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-body-inner">
+          <p>Le coach s'appuie sur ce que le client dit et ne dit pas pour comprendre pleinement ce qui est communiqué. Il reflète, paraphrase, nomme les émotions et intègre les expressions du client.</p>
+          <p>L'écoute ICF va au-delà des mots : ton, silences, métaphores, contradictions entre le dit et le non-dit.</p>
+          <div class="comp-tags">
+            <span class="comp-tag">Écoute à 3 niveaux</span>
+            <span class="comp-tag">Reformulation</span>
+            <span class="comp-tag">Silences</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-item reveal">
+      <div class="comp-header" onclick="toggleComp(this)">
+        <div class="comp-num">07</div>
+        <div class="comp-meta">
+          <div class="comp-pillar">Domaine C · Communication</div>
+          <div class="comp-title">Suscite des prises de conscience</div>
+        </div>
+        <div class="comp-toggle">+</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-body-inner">
+          <p>Le coach facilite la réflexion par le questionnement puissant, le silence, la métaphore. Il aide le client à explorer au-delà de sa pensée actuelle.</p>
+          <p>C'est le cœur du coaching : créer des moments de "déclic" qui changent la perspective du client.</p>
+          <div class="comp-tags">
+            <span class="comp-tag">Questions puissantes</span>
+            <span class="comp-tag">Recadrage</span>
+            <span class="comp-tag">Métaphore</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOMAINE D -->
+    <div class="pillar-divider reveal">
+      <span class="pillar-label">Domaine D — Cultiver l'apprentissage</span>
+      <div class="pillar-line"></div>
+    </div>
+
+    <div class="comp-item reveal">
+      <div class="comp-header" onclick="toggleComp(this)">
+        <div class="comp-num">08</div>
+        <div class="comp-meta">
+          <div class="comp-pillar">Domaine D · Croissance</div>
+          <div class="comp-title">Facilite la croissance du client</div>
+        </div>
+        <div class="comp-toggle">+</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-body-inner">
+          <p>Le coach transforme les prises de conscience en actions, favorise l'autonomie, célèbre les progrès et soutient l'intégration de nouveaux apprentissages.</p>
+          <p>L'objectif final : que le client n'ait plus besoin du coach. Cette compétence guide vers l'autonomie durable.</p>
+          <div class="comp-tags">
+            <span class="comp-tag">Plan d'action</span>
+            <span class="comp-tag">Accountability</span>
+            <span class="comp-tag">Autonomie</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <div class="cta reveal">
+    <h2>Analysez vos séances <em>maintenant</em></h2>
+    <p>Obtenez un feedback objectif sur vos 8 compétences ICF en 2 minutes. Première analyse gratuite.</p>
+    <a href="/" class="btn">Essayer CoachPartner</a>
+  </div>
+
+</div>
+
+<script>
+  // Accordion toggle
+  function toggleComp(header) {
+    const item = header.parentElement;
+    item.classList.toggle('open');
+  }
+
+  // Scroll reveal animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
