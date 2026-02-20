@@ -248,29 +248,31 @@ export default function CoachPartner() {
     e.target.value = ""; // Reset input
     return;
   }
-    setError(null);
-    const validationError = await validateAudioFile(file);
-    if (validationError) { setError(validationError); e.target.value = ""; return; }
+  
+  setError(null);
+  const validationError = await validateAudioFile(file);
+  if (validationError) { setError(validationError); e.target.value = ""; return; }
     setAudioFile(file);
     setPhase("transcribing");
     setProgress({ message: "Transcription audio en cours…", percent: 30 });
-    try {
-      const reader = new FileReader();
-      reader.onload = async () => {
-        const base64Audio = reader.result.split(",")[1];
-        const transcriptResult = await callBackendAPI("transcribe", { audioData: base64Audio, fileName: file.name });
-        setTranscription(transcriptResult.text);
-        setProgress({ message: "Transcription terminée", percent: 50 });
-        await analyzeTranscription(transcriptResult.text);
-      };
-      reader.onerror = () => { throw new Error("Erreur lecture du fichier"); };
-      reader.readAsDataURL(file);
-    } catch (err) {
-      setError(err.message || "Erreur lors de la transcription");
-      setPhase("input");
-      setProgress({ message: "", percent: 0 });
-    }
-  };
+    
+  try {
+    const reader = new FileReader();
+    reader.onload = async () => {
+      const base64Audio = reader.result.split(",")[1];
+      const transcriptResult = await callBackendAPI("transcribe", { audioData: base64Audio, fileName: file.name });
+      setTranscription(transcriptResult.text);
+      setProgress({ message: "Transcription terminée", percent: 50 });
+      await analyzeTranscription(transcriptResult.text);
+    };
+    reader.onerror = () => { throw new Error("Erreur lecture du fichier"); };
+    reader.readAsDataURL(file);
+  } catch (err) {
+    setError(err.message || "Erreur lors de la transcription");
+    setPhase("input");
+    setProgress({ message: "", percent: 0 });
+  }
+};
 
 const analyzeTranscription = async (text = transcription) => {
   if (!text.trim()) { setError("Transcription vide"); return; }
