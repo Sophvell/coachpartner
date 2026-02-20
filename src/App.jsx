@@ -183,7 +183,7 @@ export default function CoachPartner() {
   const [progress, setProgress] = useState({ message: "", percent: 0 });
   const [error, setError] = useState(null);
   const [analysesUsed, setAnalysesUsed] = useState(0);
-  const [showPaywall, setShowPaywall] = useState(false);
+  const [showPaywall, setShowPaywall] = useState(true);
   const [unlockCode, setUnlockCode] = useState("");
   const [codeError, setCodeError] = useState("");
   const [showRadar, setShowRadar] = useState(false);
