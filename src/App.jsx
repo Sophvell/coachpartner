@@ -238,7 +238,7 @@ export default function CoachPartner() {
     return res.json();
   };
 
- const handleAudioUpload = async (e) => {
+const handleAudioUpload = async (e) => {
   const file = e.target.files[0];
   if (!file) return;
   
@@ -251,11 +251,16 @@ export default function CoachPartner() {
   
   setError(null);
   const validationError = await validateAudioFile(file);
-  if (validationError) { setError(validationError); e.target.value = ""; return; }
-    setAudioFile(file);
-    setPhase("transcribing");
-    setProgress({ message: "Transcription audio en cours…", percent: 30 });
-    
+  if (validationError) { 
+    setError(validationError); 
+    e.target.value = ""; 
+    return; 
+  }
+  
+  setAudioFile(file);
+  setPhase("transcribing");
+  setProgress({ message: "Transcription audio en cours…", percent: 30 });
+  
   try {
     const reader = new FileReader();
     reader.onload = async () => {
@@ -282,11 +287,13 @@ const analyzeTranscription = async (text = transcription) => {
     setShowPaywall(true);
     return;
   }
-    setPhase("analyzing");
-    setError(null);
-    setProgress({ message: "Analyse ICF en cours…", percent: 70 });
-    try {
-      const systemPrompt = `Tu es un mentor ICF certifié MCC, spécialisé dans l'évaluation de séances de coaching selon le référentiel ICF (8 compétences clés).
+  
+  setPhase("analyzing");
+  setError(null);
+  setProgress({ message: "Analyse ICF en cours…", percent: 70 });
+  
+  try {
+    const systemPrompt = `Tu es un mentor ICF certifié MCC, spécialisé dans l'évaluation de séances de coaching selon le référentiel ICF (8 compétences clés).
 Ton rôle : Analyser objectivement une transcription de séance de coaching.
 Principes d'évaluation :
 - Base ton analyse UNIQUEMENT sur des éléments observables dans la transcription
@@ -298,7 +305,7 @@ Principes d'évaluation :
 Référentiel ICF (8 compétences clés) :
 ${JSON.stringify(GRILLE_ICF, null, 2)}`;
 
-      const userPrompt = `Analyse cette transcription de séance de coaching selon le référentiel ICF.
+    const userPrompt = `Analyse cette transcription de séance de coaching selon le référentiel ICF.
 TRANSCRIPTION :
 ${text}
 CONSIGNES :
@@ -326,19 +333,19 @@ RETOURNE UN JSON STRICTEMENT DANS CE FORMAT (sans backticks markdown) :
   "structure_globale": "Commentaire sur ouverture/corps/clôture de séance"
 }`;
 
-      const analysisResult = await callBackendAPI("analyze", { systemPrompt, userPrompt });
-      setAnalyse(analysisResult);
-      setPhase("result");
-      setProgress({ message: "Analyse terminée", percent: 100 });
-      const newCount = analysesUsed + 1;
-      setAnalysesUsed(newCount);
-      localStorage.setItem("coachpartner_analyses_count", newCount.toString());
-    } catch (err) {
-      setError(err.message || "Erreur lors de l'analyse");
-      setPhase("input");
-      setProgress({ message: "", percent: 0 });
-    }
-  };
+    const analysisResult = await callBackendAPI("analyze", { systemPrompt, userPrompt });
+    setAnalyse(analysisResult);
+    setPhase("result");
+    setProgress({ message: "Analyse terminée", percent: 100 });
+    const newCount = analysesUsed + 1;
+    setAnalysesUsed(newCount);
+    localStorage.setItem("coachpartner_analyses_count", newCount.toString());
+  } catch (err) {
+    setError(err.message || "Erreur lors de l'analyse");
+    setPhase("input");
+    setProgress({ message: "", percent: 0 });
+  }
+};
 
   const resetAll = () => {
     setMode("choice"); setPhase("input"); setTranscription(""); setAudioFile(null);
