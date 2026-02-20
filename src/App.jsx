@@ -894,7 +894,7 @@ RETOURNE UN JSON STRICTEMENT DANS CE FORMAT (sans backticks markdown) :
               <button
                 className="cp-btn cp-btn-primary"
                 style={{ width: "100%", justifyContent: "center", marginBottom: "0.5rem" }}
-                onClick={() => window.open("VOTRE_LIEN_STRIPE_ICI", "_blank")}
+                onClick={() => window.open("https://buy.stripe.com/cNi28qalV8VW6aL1xsaAw00", "_blank")}
               >
                 Payer 5€ et continuer
               </button>
