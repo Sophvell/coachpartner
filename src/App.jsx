@@ -1047,7 +1047,7 @@ RETOURNE UN JSON STRICTEMENT DANS CE FORMAT (sans backticks markdown) :
                   analyzeTranscription();
                 }
               }}
-            >
+              >
               Analyser cette transcription
             </button>
             </div>
