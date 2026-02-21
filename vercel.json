@@ -4,35 +4,3 @@
   ]
 }
 ```
-
-4. **Commit** : "Add vercel.json config"
-
----
-
-### ÉTAPE 5 : Attendre le déploiement (2 min)
-
-Vercel redéploie automatiquement.
-
-**Attendre 2-3 min**, puis tester :
-```
-https://coachpartner.vercel.app/prix.html
-https://coachpartner.vercel.app/contact.html
-https://coachpartner.vercel.app/framework-icf.html
-```
-
-**= Devrait marcher ! ✅**
-
----
-
-## 📊 STRUCTURE FINALE
-```
-coachpartner/
-├── public/              ← NOUVEAU
-│   ├── prix.html
-│   ├── contact.html
-│   └── framework-icf.html
-├── src/
-│   └── App.jsx
-├── index.html
-├── vercel.json          ← NOUVEAU
-└── package.json
