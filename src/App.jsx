@@ -17,7 +17,7 @@ function App() {
     window.location.href = 'https://google.com';
     return false;
   }
-});
+
 
 if (!isAuthorized) return null;
   
@@ -1350,3 +1350,4 @@ RETOURNE UN JSON STRICTEMENT DANS CE FORMAT (sans backticks markdown) :
     </div>
   );
 }
+});
