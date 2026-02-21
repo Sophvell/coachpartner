@@ -1,6 +1,16 @@
 {
   "rewrites": [
-    { "source": "/(.*).html", "destination": "/public/$1.html" }
+    {
+      "source": "/prix.html",
+      "destination": "/public/prix.html"
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/public/contact.html"
+    },
+    {
+      "source": "/framework-icf.html",
+      "destination": "/public/framework-icf.html"
+    }
   ]
 }
-```
