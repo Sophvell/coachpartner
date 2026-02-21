@@ -68,8 +68,8 @@ const NIVEAU_CONFIG = {
   "Pas observé": { color: "#6B7585", bg: "rgba(107,117,133,0.15)", border: "rgba(107,117,133,0.2)",  dot: "#6B7585", score: 0   },
 };
 
-const MAX_AUDIO_DURATION_MINUTES = 60;
-const MAX_FILE_SIZE_MB = 25;
+const MAX_AUDIO_DURATION_MINUTES = 120;
+const MAX_FILE_SIZE_MB = 30;
 
 // ─── RADAR CHART ─────────────────────────────────────────────────────────────
 
@@ -435,6 +435,34 @@ RETOURNE UN JSON STRICTEMENT DANS CE FORMAT (sans backticks markdown) :
       padding-bottom: 2rem; margin-bottom: 4rem;
       border-bottom: 1px solid var(--border);
     }
+
+    /* Navigation links */
+    .cp-nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    }
+
+    .cp-nav-link {
+    font-size: 0.875rem;
+    color: var(--text-2);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s;
+    white-space: nowrap;
+    }
+
+    .cp-nav-link:hover {
+    color: var(--teal);
+    }
+
+    /* Responsive - Cache menu sur mobile */
+    @media (max-width: 900px) {
+      .cp-nav-links {
+        display: none;
+      }
+    }
+    
     .cp-logo {
       font-family: 'Fraunces', serif; font-style: italic;
       font-size: 1.5rem; font-weight: 300; color: var(--text);
@@ -899,9 +927,18 @@ RETOURNE UN JSON STRICTEMENT DANS CE FORMAT (sans backticks markdown) :
           <div className="cp-logo">
             Coach<strong>Partner</strong>
           </div>
-          <span className={`cp-nav-badge ${analysesUsed >= 1 ? "used" : ""}`}>
-            {analysesUsed === 0 ? "1 analyse gratuite" : "Analyse utilisée"}
-          </span>
+  
+        {/* Menu navigation */}
+        <div className="cp-nav-links">
+          <a href="/" className="cp-nav-link">Accueil</a>
+          <a href="/framework-icf.html" className="cp-nav-link">Référentiel ICF</a>
+          <a href="/prix.html" className="cp-nav-link">Prix</a>
+          <a href="/contact.html" className="cp-nav-link">Contact</a>
+        </div>
+  
+        <span className={`cp-nav-badge ${analysesUsed >= 1 ? "used" : ""}`}>
+          {analysesUsed === 0 ? "1 analyse gratuite" : "Analyse utilisée"}
+        </span>
         </nav>
 
         {/* ── PAYWALL MODAL ── */}
