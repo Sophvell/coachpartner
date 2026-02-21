@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – CoachPartner</title>
+  <meta name="description" content="Contactez CoachPartner : hello@coachpartner.app · Réponse sous 24h">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400;1,600&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400;1,600&family=Figtree:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --night:   #141820;
+      --deep:    #1C2230;
+      --surface: #232C3D;
+      --surface2:#2B3549;
+      --border:  rgba(255,255,255,0.07);
+      --border-w:rgba(255,255,255,0.12);
+      --teal:    #3ECFB2;
+      --teal-dk: #2DB89C;
+      --teal-pl: rgba(62,207,178,0.10);
+      --teal-bd: rgba(62,207,178,0.22);
+      --text:    #F0EDE8;
+      --text-2:  #A8B0C0;
+      --text-3:  #5C6475;
+    }
+
+    body {
+      background: var(--night);
+      font-family: 'Figtree', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* Ambient glow */
+    .ambient {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .orb {
+      position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.12;
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+    .orb-1 { width:600px;height:600px; background:#5BBFAD; top:-250px;left:-180px; }
+    .orb-2 { width:500px;height:500px; background:#E8A85C; bottom:-200px;right:-150px; animation-delay:-6s; }
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(25px,18px) scale(1.06); }
+    }
+
+    .page {
+      position: relative; z-index: 1;
+      max-width: 800px; margin: 0 auto;
+      padding: 2.5rem 2rem 5rem;
+    }
+
+    /* Nav */
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 2rem; margin-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .logo {
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: 1.5rem; font-weight: 300; color: var(--text);
+      letter-spacing: -0.01em; text-decoration: none;
+    }
+    .logo strong {
+      font-style: normal; font-weight: 600; color: var(--teal);
+    }
+    .nav-links {
+      display: flex; gap: 2rem; align-items: center;
+    }
+    .nav-link {
+      font-size: 0.875rem; color: var(--text-2); text-decoration: none;
+      transition: color 0.2s; font-weight: 400;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--teal);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 0 0 4rem; text-align: center;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--teal-pl); border: 1px solid var(--teal-bd);
+      padding: 0.4rem 1rem; border-radius: 999px;
+      font-size: 0.7rem; color: var(--teal); font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.75rem;
+    }
+    .hero h1 {
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300; line-height: 1.1; color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--teal); font-weight: 400;
+    }
+    .hero-desc {
+      font-size: 1.1rem; font-weight: 300; color: var(--text-2);
+      max-width: 600px; margin: 0 auto; line-height: 1.8;
+    }
+
+    /* Contact cards */
+    .contact-grid {
+      display: grid;
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+    .contact-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 2.5rem;
+      transition: all 0.3s;
+    }
+    .contact-card:hover {
+      border-color: var(--teal-bd);
+      transform: translateY(-2px);
+    }
+    .contact-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .contact-title {
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: 1.5rem; font-weight: 400; color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .contact-text {
+      color: var(--text-2); margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+    .contact-link {
+      display: inline-block;
+      color: var(--teal); text-decoration: none;
+      font-weight: 500; font-size: 1.1rem;
+      transition: all 0.2s;
+    }
+    .contact-link:hover {
+      color: var(--teal-dk);
+      transform: translateX(4px);
+    }
+
+    /* Info box */
+    .info-box {
+      background: var(--teal-pl);
+      border: 1px solid var(--teal-bd);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+    .info-box-title {
+      color: var(--teal);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .info-box-text {
+      color: var(--text-2);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="ambient">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+</div>
+
+<div class="page">
+  
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="/" class="logo">Coach<strong>Partner</strong></a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Accueil</a>
+      <a href="/framework-icf.html" class="nav-link">Référentiel ICF</a>
+      <a href="/prix.html" class="nav-link">Prix</a>
+      <a href="/contact.html" class="nav-link active">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-tag">Contact</div>
+    <h1>Parlons de votre <em>pratique</em></h1>
+    <p class="hero-desc">
+      Une question ? Un projet ? Nous sommes là pour vous accompagner.
+    </p>
+  </div>
+
+  <!-- Contact methods -->
+  <div class="contact-grid">
+    
+    <!-- Email -->
+    <div class="contact-card">
+      <div class="contact-icon">📧</div>
+      <div class="contact-title">Email</div>
+      <p class="contact-text">
+        Pour toute question, demande de tarif spécifique ou partenariat.
+      </p>
+      <a href="mailto:hello@coachpartner.app" class="contact-link">
+        hello@coachpartner.app →
+      </a>
+    </div>
+
+    <!-- Support -->
+    <div class="contact-card">
+      <div class="contact-icon">💬</div>
+      <div class="contact-title">Support technique</div>
+      <p class="contact-text">
+        Un problème avec votre analyse ? Besoin d'aide ?
+      </p>
+      <a href="mailto:hello@coachpartner.app?subject=Support%20technique" class="contact-link">
+        Contactez le support →
+      </a>
+    </div>
+
+    <!-- Partenariats -->
+    <div class="contact-card">
+      <div class="contact-icon">🤝</div>
+      <div class="contact-title">Écoles & partenariats</div>
+      <p class="contact-text">
+        Tarifs dégressifs pour écoles de coaching et organismes de formation.
+      </p>
+      <a href="mailto:hello@coachpartner.app?subject=Partenariat" class="contact-link">
+        Discutons-en →
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Info -->
+  <div class="info-box">
+    <div class="info-box-title">⏱️ Délai de réponse</div>
+    <div class="info-box-text">
+      Nous répondons généralement sous 24h les jours ouvrés.<br>
+      Pour les demandes urgentes, précisez-le dans l'objet de votre email.
+    </div>
+  </div>
+
+  <!-- FAQ link -->
+  <div style="text-align: center; margin-top: 3rem;">
+    <p style="color: var(--text-2); margin-bottom: 1rem;">
+      Une question sur les tarifs ou le fonctionnement ?
+    </p>
+    <a href="/prix.html#faq" style="color: var(--teal); text-decoration: none; font-weight: 500;">
+      Consultez notre FAQ →
+    </a>
+  </div>
+
+</div>
+
+</body>
+</html>
