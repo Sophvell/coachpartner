@@ -1,5 +1,32 @@
 import { useState, useEffect, useRef } from "react";
 
+// Au début de App.jsx, après les imports
+const BETA_PASSWORD = "BETA2026";
+
+function App() {
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  
+  useEffect(() => {
+    const hasAccess = sessionStorage.getItem('beta_access');
+    if (!hasAccess) {
+      const password = prompt('Code beta :');
+      if (password === BETA_PASSWORD) {
+        sessionStorage.setItem('beta_access', 'true');
+        setIsAuthorized(true);
+      } else {
+        alert('Code incorrect');
+        window.location.href = 'https://google.com';
+      }
+    } else {
+      setIsAuthorized(true);
+    }
+  }, []);
+  
+  if (!isAuthorized) return null;
+  
+  // ... reste du code
+}
+
 // ─── ICF DATA ────────────────────────────────────────────────────────────────
 
 const GRILLE_ICF = {
