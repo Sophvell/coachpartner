@@ -17,10 +17,9 @@ function App() {
     window.location.href = 'https://google.com';
     return false;
   }
-
-
+});
 if (!isAuthorized) return null;
-  
+}
 
 // ─── ICF DATA ────────────────────────────────────────────────────────────────
 
