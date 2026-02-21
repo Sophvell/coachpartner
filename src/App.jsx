@@ -4,25 +4,22 @@ import { useState, useEffect, useRef } from "react";
 const BETA_PASSWORD = "BETA2026";
 
 function App() {
-  const [isAuthorized, setIsAuthorized] = useState(false);
-  
-  useEffect(() => {
+  const [isAuthorized, setIsAuthorized] = useState(() => {
     const hasAccess = sessionStorage.getItem('beta_access');
-    if (!hasAccess) {
-      const password = prompt('Code beta :');
-      if (password === BETA_PASSWORD) {
-        sessionStorage.setItem('beta_access', 'true');
-        setIsAuthorized(true);
-      } else {
-        alert('Code incorrect');
-        window.location.href = 'https://google.com';
-      }
-    } else {
-      setIsAuthorized(true);
-    }
-  }, []);
+    if (hasAccess) return true;
   
-  if (!isAuthorized) return null;
+    const password = prompt('Code beta :');
+    if (password === BETA_PASSWORD) {
+     sessionStorage.setItem('beta_access', 'true');
+     return true;
+    } else {
+     alert('Code incorrect');
+    window.location.href = 'https://google.com';
+    return false;
+  }
+});
+
+if (!isAuthorized) return null;
   
   // ... reste du code
 }
