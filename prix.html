@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarifs – CoachPartner</title>
+  <meta name="description" content="Tarifs CoachPartner : 1 analyse gratuite, puis 5€ par analyse. Feedback ICF en 2 minutes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400;1,600&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400;1,600&family=Figtree:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --night:   #141820;
+      --deep:    #1C2230;
+      --surface: #232C3D;
+      --surface2:#2B3549;
+      --border:  rgba(255,255,255,0.07);
+      --border-w:rgba(255,255,255,0.12);
+      --teal:    #3ECFB2;
+      --teal-dk: #2DB89C;
+      --teal-pl: rgba(62,207,178,0.10);
+      --teal-bd: rgba(62,207,178,0.22);
+      --text:    #F0EDE8;
+      --text-2:  #A8B0C0;
+      --text-3:  #5C6475;
+    }
+
+    body {
+      background: var(--night);
+      font-family: 'Figtree', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* Ambient glow */
+    .ambient {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .orb {
+      position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.12;
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+    .orb-1 { width:600px;height:600px; background:#5BBFAD; top:-250px;left:-180px; }
+    .orb-2 { width:500px;height:500px; background:#E8A85C; bottom:-200px;right:-150px; animation-delay:-6s; }
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(25px,18px) scale(1.06); }
+    }
+
+    .page {
+      position: relative; z-index: 1;
+      max-width: 1000px; margin: 0 auto;
+      padding: 2.5rem 2rem 5rem;
+    }
+
+    /* Nav */
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 2rem; margin-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .logo {
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: 1.5rem; font-weight: 300; color: var(--text);
+      letter-spacing: -0.01em; text-decoration: none;
+    }
+    .logo strong {
+      font-style: normal; font-weight: 600; color: var(--teal);
+    }
+    .nav-links {
+      display: flex; gap: 2rem; align-items: center;
+    }
+    .nav-link {
+      font-size: 0.875rem; color: var(--text-2); text-decoration: none;
+      transition: color 0.2s; font-weight: 400;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--teal);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 0 0 4rem; text-align: center;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--teal-pl); border: 1px solid var(--teal-bd);
+      padding: 0.4rem 1rem; border-radius: 999px;
+      font-size: 0.7rem; color: var(--teal); font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.75rem;
+    }
+    .hero h1 {
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300; line-height: 1.1; color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--teal); font-weight: 400;
+    }
+    .hero-desc {
+      font-size: 1.1rem; font-weight: 300; color: var(--text-2);
+      max-width: 600px; margin: 0 auto; line-height: 1.8;
+    }
+
+    /* Pricing cards */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+    .price-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 2.5rem;
+      transition: all 0.3s;
+    }
+    .price-card:hover {
+      border-color: var(--teal-bd);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(62,207,178,0.15);
+    }
+    .price-card.featured {
+      border-color: var(--teal-bd);
+      background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+      position: relative;
+    }
+    .featured-badge {
+      position: absolute; top: -12px; right: 20px;
+      background: var(--teal); color: var(--night);
+      padding: 0.35rem 1rem; border-radius: 999px;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .price-title {
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: 1.5rem; font-weight: 400; color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .price-subtitle {
+      font-size: 0.875rem; color: var(--text-3);
+      margin-bottom: 1.5rem;
+    }
+    .price-amount {
+      font-family: 'Fraunces', serif;
+      font-size: 3rem; font-weight: 300; color: var(--teal);
+      margin-bottom: 0.5rem;
+    }
+    .price-amount sup {
+      font-size: 1.5rem; color: var(--text-2);
+    }
+    .price-per {
+      font-size: 0.875rem; color: var(--text-3);
+      margin-bottom: 2rem;
+    }
+    .price-features {
+      list-style: none; margin: 2rem 0;
+    }
+    .price-features li {
+      padding: 0.5rem 0; padding-left: 1.5rem;
+      font-size: 0.95rem; color: var(--text-2);
+      position: relative;
+    }
+    .price-features li::before {
+      content: "✓"; position: absolute; left: 0;
+      color: var(--teal); font-weight: 600;
+    }
+    .btn {
+      display: block; width: 100%;
+      background: var(--teal); color: var(--night);
+      padding: 0.875rem; border-radius: 10px;
+      font-size: 0.875rem; font-weight: 600;
+      text-decoration: none; text-align: center;
+      transition: all 0.2s; border: none; cursor: pointer;
+    }
+    .btn:hover {
+      background: var(--teal-dk);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(62,207,178,0.3);
+    }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+    }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: var(--teal-bd);
+      color: var(--teal);
+      box-shadow: none;
+    }
+
+    /* FAQ */
+    .faq {
+      margin: 4rem 0;
+    }
+    .faq h2 {
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: 2rem; font-weight: 300; color: var(--text);
+      margin-bottom: 2rem; text-align: center;
+    }
+    .faq-item {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;
+    }
+    .faq-q {
+      font-weight: 500; color: var(--text); margin-bottom: 0.75rem;
+    }
+    .faq-a {
+      font-size: 0.95rem; color: var(--text-2); line-height: 1.7;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center; margin: 4rem 0;
+      padding: 3rem 2rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+    .cta h2 {
+      font-family: 'Fraunces', serif; font-style: italic;
+      font-size: 2rem; font-weight: 300; color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .cta p {
+      color: var(--text-2); margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="ambient">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+</div>
+
+<div class="page">
+  
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="/" class="logo">Coach<strong>Partner</strong></a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Accueil</a>
+      <a href="/framework-icf.html" class="nav-link">Référentiel ICF</a>
+      <a href="/prix.html" class="nav-link active">Prix</a>
+      <a href="/contact.html" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-tag">Tarifs</div>
+    <h1>Des tarifs <em>simples</em></h1>
+    <p class="hero-desc">
+      Commencez gratuitement, payez seulement ce que vous utilisez.
+    </p>
+  </div>
+
+  <!-- Pricing -->
+  <div class="pricing-grid">
+    
+    <!-- Free -->
+    <div class="price-card">
+      <div class="price-title">Essai gratuit</div>
+      <div class="price-subtitle">Pour découvrir CoachPartner</div>
+      <div class="price-amount">0<sup>€</sup></div>
+      <div class="price-per">1 analyse offerte</div>
+      <ul class="price-features">
+        <li>Analyse complète 8 compétences ICF</li>
+        <li>Feedforward actionnable</li>
+        <li>Export PDF du rapport</li>
+        <li>Aucune carte requise</li>
+      </ul>
+      <a href="/" class="btn">Commencer gratuitement</a>
+    </div>
+
+    <!-- Pay as you go -->
+    <div class="price-card featured">
+      <div class="featured-badge">Populaire</div>
+      <div class="price-title">À l'usage</div>
+      <div class="price-subtitle">Paiement par analyse</div>
+      <div class="price-amount">5<sup>€</sup></div>
+      <div class="price-per">par analyse</div>
+      <ul class="price-features">
+        <li>Tout de l'essai gratuit</li>
+        <li>Accès immédiat après paiement</li>
+        <li>Pas d'abonnement</li>
+        <li>Paiement sécurisé (Stripe)</li>
+      </ul>
+      <a href="/" class="btn">Analyser maintenant</a>
+    </div>
+
+    <!-- Coming soon -->
+    <div class="price-card">
+      <div class="price-title">Packs & abonnements</div>
+      <div class="price-subtitle">Bientôt disponibles</div>
+      <div class="price-amount">•••</div>
+      <div class="price-per">en préparation</div>
+      <ul class="price-features">
+        <li>Pack 5 analyses (économie 20%)</li>
+        <li>Pack 10 analyses (économie 30%)</li>
+        <li>Abonnement mensuel illimité</li>
+        <li>Tarifs dégressifs écoles</li>
+      </ul>
+      <a href="/contact.html" class="btn btn-ghost">Être informé(e)</a>
+    </div>
+
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq">
+    <h2>Questions <em>fréquentes</em></h2>
+    
+    <div class="faq-item">
+      <div class="faq-q">💳 Quels moyens de paiement acceptez-vous ?</div>
+      <div class="faq-a">Nous acceptons toutes les cartes bancaires (Visa, Mastercard, American Express) via notre partenaire de paiement sécurisé Stripe.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">🔒 Mes données sont-elles sécurisées ?</div>
+      <div class="faq-a">Oui. Vos transcriptions ne sont jamais stockées. L'analyse est effectuée en temps réel et seul le rapport final est conservé si vous le souhaitez. Paiements 100% sécurisés via Stripe.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">⏱️ Combien de temps prend une analyse ?</div>
+      <div class="faq-a">Environ 2 minutes. Notre IA analyse votre transcription et génère un rapport complet avec feedback sur les 8 compétences ICF, points forts et axes de développement.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">📊 Puis-je essayer avant d'acheter ?</div>
+      <div class="faq-a">Absolument ! Votre première analyse est gratuite, sans carte bancaire requise. Vous pourrez ainsi tester la qualité du feedback avant de vous engager.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">🎓 Proposez-vous des tarifs pour les écoles de coaching ?</div>
+      <div class="faq-a">Oui, nous préparons des offres dédiées aux écoles et organismes de formation. Contactez-nous à hello@coachpartner.app pour en discuter.</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Prêt à progresser dans votre <em>pratique</em> ?</h2>
+    <p>Commencez avec une analyse gratuite, aucune carte requise.</p>
+    <a href="/" class="btn" style="max-width: 300px; margin: 0 auto;">Essayer maintenant</a>
+  </div>
+
+</div>
+
+</body>
+</html>
