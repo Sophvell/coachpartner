@@ -19,7 +19,6 @@ function App() {
   }
 });
 if (!isAuthorized) return null;
-}
 
 // ─── ICF DATA ────────────────────────────────────────────────────────────────
 
