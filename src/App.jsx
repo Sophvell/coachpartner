@@ -1350,4 +1350,3 @@ RETOURNE UN JSON STRICTEMENT DANS CE FORMAT (sans backticks markdown) :
     </div>
   );
 }
-});
