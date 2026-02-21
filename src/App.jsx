@@ -21,8 +21,6 @@ function App() {
 
 if (!isAuthorized) return null;
   
-  // ... reste du code
-}
 
 // ─── ICF DATA ────────────────────────────────────────────────────────────────
 
